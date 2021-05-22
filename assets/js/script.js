@@ -1,8 +1,12 @@
+
+// arrays to hold all possible characters for random password
 var lower = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 var upper = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
 var number = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 var symbol = ["'","!","@","#","$","%","^","&","*","(",")","{","}","[","]","=","<",">","/",",","."];
 
+
+// question prompts to allow user to decide what elements they want in password
 var passwordQuestions = function() {
    var passwordLength = parseInt(prompt("How long should this password be?"));
    console.dir(passwordLength);
@@ -19,10 +23,12 @@ var passwordQuestions = function() {
    var passwordSymbol = confirm("Press OK if you would like Symbols");  
    console.log(passwordSymbol);
 
+   // If statement to prevent user from selecting no on all element types
    if (passwordLower === false && passwordUpper === false && passwordNumber === false && passwordSymbols === false) {
       alert("Please select at least one character type to generate password")
       return
    }
+   // taking user inputs and placing them into an object
    var passwordChoice = {
       passwordLength: passwordLength,
       passwordLower: passwordLower,
@@ -30,17 +36,17 @@ var passwordQuestions = function() {
       passwordNumber: passwordNumber,
       passwordSymbol: passwordSymbol
    }
-   return passwordChoice
-
+   return passwordChoice;
 };
 
+// Function to randomize elements for password
 function randomSelect(array) {
    var randomI = Math.floor(Math.random() * array.length);
-   var randomE = array[randomI]
-   return randomE
+   var randomE = array[randomI];
+   return randomE;
 };
 
-// I had passArr.length originally
+// function to form password
 function generatePassword() {
    var choices = passwordQuestions();
    var results = [];
@@ -62,14 +68,15 @@ function generatePassword() {
       pChar = pChar.concat(symbol);
       gChar.push(randomSelect(symbol));
    }
-   for (var i = 0; i < choices.length; i++) {
+   for (i = 0; i < choices.length; i++) {
       var myChar = randomSelect(pChar);
       results.push(myChar);
       console.log(pChar);
    }
-   for (var i = 0; i < gChar.length; i++) {
+   for (i = 0; i < gChar.length; i++) {
       results[i] = gChar[i];
    }
+   // return and join user choices
    return results.join("");
 };
 
