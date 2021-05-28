@@ -24,9 +24,9 @@ var passwordQuestions = function() {
    console.log(passwordSymbol);
 
    // If statement to prevent user from selecting no on all element types
-   if (passwordLower === false && passwordUpper === false && passwordNumber === false && passwordSymbols === false) {
-      alert("Please select at least one character type to generate password")
-      return
+   if (passwordLower === false && passwordUpper === false && passwordNumber === false && passwordSymbol === false) {
+      window.alert("Please select at least one character type to generate password");
+      return;
    }
    // taking user inputs and placing them into an object
    var passwordChoice = {
@@ -68,7 +68,9 @@ function generatePassword() {
       pChar = pChar.concat(symbol);
       gChar.push(randomSelect(symbol));
    }
-   for (i = 0; i < choices.length; i++) {
+   // console.log(choices.passwordLength);
+   // console.log(pChar);
+   for (i = 0; i < choices.passwordLength; i++) {
       var myChar = randomSelect(pChar);
       results.push(myChar);
       console.log(pChar);
