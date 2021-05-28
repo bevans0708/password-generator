@@ -8,7 +8,7 @@ var symbol = ["'","!","@","#","$","%","^","&","*","(",")","{","}","[","]","=","<
 
 // question prompts to allow user to decide what elements they want in password
 var passwordQuestions = function() {
-   var passwordLength = parseInt(prompt("How long should this password be?"));
+   var passwordLength = parseInt(prompt("Enter password length between 8 and 128."));
    console.dir(passwordLength);
 
    var passwordLower = confirm("Press OK if you would like Lowercase");  
@@ -26,6 +26,11 @@ var passwordQuestions = function() {
    // If statement to prevent user from selecting no on all element types
    if (passwordLower === false && passwordUpper === false && passwordNumber === false && passwordSymbol === false) {
       window.alert("Please select at least one character type to generate password");
+      return;
+   }
+
+   if (passwordLength < 8 || passwordLength > 128) {
+      window.alert("Password must be between 8 and 128 charaters to generate password");
       return;
    }
    // taking user inputs and placing them into an object
